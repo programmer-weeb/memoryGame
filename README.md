@@ -2,7 +2,7 @@
 
 A premium, fast-paced memory challenge built with **React 19**, **Tailwind CSS 4**, and the **Giphy API**. Test your memory by clicking each sticker exactly once. One wrong move, and the game is over!
 
-**[🔗 Live Demo](https://memory-game-pkoj2tcyw-programmerweebs-projects.vercel.app/)**
+**[🔗 Live Demo](https://memory-game-seven-rose-52.vercel.app/)**
 
 ## ✨ Features
 
