@@ -13,8 +13,8 @@ export function Cards() {
   const [clickedIds, setClickedIds] = useState(new Set());
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
 
-  // Initialize and shuffle stickers when they are loaded
   useEffect(() => {
     if (stickers.length > 0) {
       setShuffledStickers(shuffleArray([...stickers]));
@@ -26,13 +26,16 @@ export function Cards() {
 
     if (clickedIds.has(id)) {
       setIsGameOver(true);
+      if (score > bestScore) setBestScore(score);
     } else {
       const newClickedIds = new Set(clickedIds).add(id);
       setClickedIds(newClickedIds);
-      setScore(newClickedIds.size);
+      const newScore = newClickedIds.size;
+      setScore(newScore);
 
-      if (newClickedIds.size === stickers.length) {
-        setIsGameOver(true); // User won! (Simplified)
+      if (newScore === stickers.length) {
+        setIsGameOver(true);
+        setBestScore(stickers.length);
       } else {
         setShuffledStickers(shuffleArray(shuffledStickers));
       }
@@ -47,29 +50,51 @@ export function Cards() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div className="glass-panel p-8 text-red-400 font-medium">
+        Error: {error}
+      </div>
+    );
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="mb-4 text-xl font-semibold">
-        Score: {score} / {stickers.length}
+    <div className="flex flex-col items-center w-full max-w-6xl">
+      {/* Score Board */}
+      <div className="glass-panel px-8 py-4 mb-12 flex gap-12 items-center">
+        <div className="flex flex-col items-center">
+          <span className="text-xs uppercase tracking-widest text-slate-400 font-bold">Current Score</span>
+          <span className="text-3xl font-black text-blue-400">{score}</span>
+        </div>
+        <div className="w-px h-8 bg-white/10"></div>
+        <div className="flex flex-col items-center">
+          <span className="text-xs uppercase tracking-widest text-slate-400 font-bold">Best Score</span>
+          <span className="text-3xl font-black text-purple-400">{bestScore}</span>
+        </div>
       </div>
 
+      {/* Game Over Modal */}
       {isGameOver && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-2xl shadow-2xl text-center">
-            <h2 className="text-3xl font-bold mb-4">
-              {score === stickers.length ? "🎉 You Won!" : "💀 Game Over"}
+        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="glass-panel max-w-md w-full p-10 text-center scale-in-center">
+            <h2 className={`text-4xl font-black mb-2 ${score === stickers.length ? "text-green-400" : "text-red-400"}`}>
+              {score === stickers.length ? "UNSTOPPABLE!" : "GAME OVER"}
             </h2>
-            <p className="mb-6 text-gray-600">Final Score: {score}</p>
+            <p className="text-slate-400 mb-8">
+              {score === stickers.length 
+                ? "You've mastered the memory grid." 
+                : `You managed to collect ${score} stickers. Try again?`}
+            </p>
             <button
               onClick={resetGame}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all active:scale-95"
             >
               Play Again
             </button>
@@ -77,7 +102,8 @@ export function Cards() {
         </div>
       )}
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4">
+      {/* Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 w-full p-4">
         {shuffledStickers.map((sticker) => (
           <SingleCard
             key={sticker.id}
