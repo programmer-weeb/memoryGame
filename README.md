@@ -1,16 +1,62 @@
-# React + Vite
+# 🧠 Memory Game - Giphy Edition
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, fast-paced memory challenge built with **React 19**, **Tailwind CSS 4**, and the **Giphy API**. Test your memory by clicking each sticker exactly once. One wrong move, and the game is over!
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **🎮 Dynamic Gameplay**: Cards reshuffle every time you make a selection
+- **🏆 Score Tracking**: Live score updates and persistence of your best record.
+- **🖼️ Giphy Integration**: Fetches real-time stickers to ensure every game feels fresh.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Core**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite 6](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Runtime**: [Bun](https://bun.sh/)
+- **API**: [Giphy SDK](https://developers.giphy.com/)
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Prerequisites
+
+Ensure you have [Bun](https://bun.sh/) installed on your machine.
+
+### 2. Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/programmer-weeb/memoryGame.git
+cd memoryGame
+bun install
+```
+
+### 3. Environment Setup
+
+Create a `.env` file in the root directory and add your Giphy API key:
+
+```env
+VITE_GIPHY_API_KEY=your_giphy_api_key_here
+```
+
+### 4. Development
+
+Start the development server:
+
+```bash
+bun dev
+```
+
+## 📂 Project Structure
+
+```text
+src/
+├── assets/             # Static assets
+├── Header.jsx          # App header & branding
+├── Cards.jsx           # Main game logic & state management
+├── SingleCard.jsx      # Individual card component
+├── useGiphyStickers.jsx # Custom hook for API interaction
+├── gameUtile.js        # Helper functions (shuffling logic)
+└── index.css           # Global styles & Tailwind directives
+```
