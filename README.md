@@ -1,32 +1,32 @@
-# 🧠 Memory Game - Giphy Edition
+# Memory Game
 
-A premium, fast-paced memory challenge built with **React 19**, **Tailwind CSS 4**, and the **Giphy API**. Test your memory by clicking each sticker exactly once. One wrong move, and the game is over!
+A small memory game built with React, Tailwind CSS, and the Giphy API. Click each sticker once. If you click the same sticker twice, the round ends.
 
-**[🔗 Live Demo](https://memory-game-seven-rose-52.vercel.app/)**
+[Live demo](https://memory-game-seven-rose-52.vercel.app/)
 
-## ✨ Features
+## Features
 
-- **🎮 Dynamic Gameplay**: Cards reshuffle every time you make a selection
-- **🏆 Score Tracking**: Live score updates and persistence of your best record.
-- **🖼️ Giphy Integration**: Fetches real-time stickers to ensure every game feels fresh.
+- Cards reshuffle after each pick.
+- The game tracks your current score and best score.
+- Stickers come from Giphy, so the deck can change between games.
 
-## 🛠️ Tech Stack
+## Tech stack
 
-- **Core**: [React 19](https://react.dev/)
-- **Build Tool**: [Vite 6](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **Runtime**: [Bun](https://bun.sh/)
-- **API**: [Giphy SDK](https://developers.giphy.com/)
+- [React 19](https://react.dev/)
+- [Vite 6](https://vitejs.dev/)
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [Bun](https://bun.sh/)
+- [Giphy SDK](https://developers.giphy.com/)
 
-## 🚀 Getting Started
+## Getting started
 
-### 1. Prerequisites
+### Prerequisites
 
-Ensure you have [Bun](https://bun.sh/) installed on your machine.
+Install [Bun](https://bun.sh/) if you do not already have it.
 
-### 2. Installation
+### Installation
 
-Clone the repository and install dependencies:
+Clone the repo and install the dependencies:
 
 ```bash
 git clone https://github.com/programmer-weeb/memoryGame.git
@@ -34,31 +34,31 @@ cd memoryGame
 bun install
 ```
 
-### 3. Environment Setup
+### Environment setup
 
-Create a `.env` file in the root directory and add your Giphy API key:
+Create a `.env` file in the project root and add your Giphy API key:
 
 ```env
 VITE_GIPHY_API_KEY=your_giphy_api_key_here
 ```
 
-### 4. Development
+### Development
 
-Start the development server:
+Start the dev server:
 
 ```bash
 bun dev
 ```
 
-## 📂 Project Structure
+## Project structure
 
 ```text
 src/
 ├── assets/             # Static assets
-├── Header.jsx          # App header & branding
-├── Cards.jsx           # Main game logic & state management
+├── Header.jsx          # App header and branding
+├── Cards.jsx           # Game logic and state
 ├── SingleCard.jsx      # Individual card component
-├── useGiphyStickers.jsx # Custom hook for API interaction
-├── gameUtile.js        # Helper functions (shuffling logic)
-└── index.css           # Global styles & Tailwind directives
+├── useGiphyStickers.jsx # Giphy API hook
+├── gameUtile.js        # Shuffle helper
+└── index.css           # Global styles and Tailwind directives
 ```
